@@ -9,6 +9,7 @@
 #import "PFProductTableViewCell.h"
 #import "PFProductsViewController.h"
 #import "PFShippingViewController.h"
+#import <ParseUI/ParseUI.h>
 
 #define ROW_MARGIN 6.0f
 #define ROW_HEIGHT 173.0f
@@ -25,8 +26,8 @@
 #pragma mark - Life cycle
 
 - (id)initWithStyle:(UITableViewStyle)style {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.className = @"Item";
+    if (self = [super initWithClassName:@"Item"]) {
+        //self.className = @"Item";
         [self.tableView registerClass:[PFProductTableViewCell class] forCellReuseIdentifier:@"ParseProduct"];
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }

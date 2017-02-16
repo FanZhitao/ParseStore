@@ -13,7 +13,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    [Parse setApplicationId:infoDictionary[@"PARSE_APPLICATION_ID"] clientKey:infoDictionary[@"PARSE_CLIENT_KEY"]];
+    //[Parse setApplicationId:infoDictionary[@"PARSE_APPLICATION_ID"] clientKey:infoDictionary[@"PARSE_CLIENT_KEY"]];
+    ParseClientConfiguration *configuration = [ParseClientConfiguration configurationWithBlock:^(id<ParseMutableClientConfiguration>  _Nonnull configuration) {
+        [configuration setApplicationId:infoDictionary[@"PARSE_APPLICATION_ID"]];
+        [configuration setClientKey:infoDictionary[@"PARSE_CLIENT_KEY"]];
+        [configuration setServer:@"http://localhost:1337/parse"];
+    }];
+    [Parse initializeWithConfiguration:configuration];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
